@@ -1,0 +1,409 @@
+food_name,region,type,calories,protein_g,carbs_g,fat_g,fiber_g,category,ingredients,prep_time_mins,suitable_for_athletes,risk_level
+Aloo Posto,Bengali,veg,280,8,35,12.0,4,lunch,"potatoes,poppy seeds,mustard oil",30,True,low
+Shukto,Bengali,veg,180,6,22,8.0,5,lunch,"mixed vegetables,bitter gourd,milk",40,True,low
+Cholar Dal,Bengali,veg,220,12,38,4.0,8,lunch,"bengal gram,coconut,ghee",35,True,low
+Bhapa Doi,Bengali,veg,160,6,24,5.0,0,snack,"yogurt,condensed milk,cardamom",180,False,low
+Luchi with Aloo Dum,Bengali,veg,420,8,55,18.0,3,breakfast,"flour,potatoes,spices",45,False,low
+Mochar Ghonto,Bengali,veg,200,7,28,8.0,6,lunch,"banana flower,coconut,spices",50,True,low
+Dhokar Dalna,Bengali,veg,260,14,32,9.0,5,lunch,"lentil cakes,tomato,spices",60,True,low
+Begun Bhaja,Bengali,veg,180,3,18,12.0,4,snack,"eggplant,mustard oil,spices",20,True,low
+Panta Bhat,Bengali,veg,150,4,32,1.0,2,breakfast,"fermented rice,onion,chili",480,True,low
+Misti Doi,Bengali,veg,180,7,26,6.0,0,snack,"yogurt,jaggery",360,False,low
+Macher Jhol,Bengali,non-veg,250,28,12,10.0,2,lunch,"fish,potatoes,tomatoes,turmeric",35,True,very_low
+Kosha Mangsho,Bengali,non-veg,480,35,8,35.0,1,lunch,"mutton,onions,yogurt,spices",90,False,high
+Chingri Malai Curry,Bengali,non-veg,320,24,10,22.0,1,dinner,"prawns,coconut milk,spices",40,True,low
+Doi Maach,Bengali,non-veg,290,30,8,16.0,1,lunch,"fish,yogurt,mustard paste",45,True,very_low
+Ilish Macher Paturi,Bengali,non-veg,350,32,5,24.0,1,dinner,"hilsa fish,mustard paste,banana leaf",35,True,low
+Chicken Rezala,Bengali,non-veg,420,36,10,28.0,2,dinner,"chicken,yogurt,cashew,spices",55,False,moderate
+Prawn Cutlet,Bengali,non-veg,280,22,18,14.0,2,snack,"prawns,breadcrumbs,egg",40,True,very_low
+Fish Kalia,Bengali,non-veg,310,29,12,18.0,2,lunch,"fish,onion,yogurt,spices",45,True,low
+Mutton Biryani Bengali Style,Bengali,non-veg,550,30,62,22.0,2,lunch,"mutton,rice,potato,spices",90,False,moderate
+Chingri Malaikari,Bengali,non-veg,340,26,8,24.0,1,dinner,"prawns,coconut milk,spices",40,True,low
+Idli Sambar,South,veg,180,8,36,2.0,4,breakfast,"rice,lentils,vegetables",20,True,low
+Dosa with Chutney,South,veg,220,6,42,4.0,3,breakfast,"rice,lentils,coconut",25,True,low
+Rasam Rice,South,veg,240,6,48,3.0,2,lunch,"rice,tamarind,tomatoes,spices",30,True,low
+Avial,South,veg,160,5,20,8.0,6,lunch,"mixed vegetables,coconut,yogurt",35,True,low
+Pongal,South,veg,280,10,45,8.0,3,breakfast,"rice,moong dal,pepper,ghee",30,True,low
+Medu Vada,South,veg,200,7,24,9.0,3,breakfast,"urad dal,curry leaves,spices",30,True,low
+Bisi Bele Bath,South,veg,320,12,52,8.0,5,lunch,"rice,lentils,vegetables,tamarind",45,True,low
+Upma,South,veg,200,6,38,5.0,3,breakfast,"semolina,vegetables,spices",20,True,low
+Coconut Chutney,South,veg,120,3,8,10.0,2,snack,"coconut,green chili,ginger",10,True,low
+Lemon Rice,South,veg,260,5,48,6.0,2,lunch,"rice,lemon,peanuts,turmeric",20,True,low
+Kootu,South,veg,180,8,26,6.0,5,lunch,"vegetables,lentils,coconut",35,True,low
+Pesarattu,South,veg,210,10,35,4.0,4,breakfast,"green gram,rice,ginger",30,True,low
+Uttapam,South,veg,240,8,40,6.0,3,breakfast,"rice,lentils,vegetables",25,True,low
+Sambhar Vada,South,veg,280,10,38,10.0,4,breakfast,"urad dal,lentils,vegetables",40,True,low
+Appam with Stew,South,veg,260,7,42,8.0,3,dinner,"rice,coconut milk,vegetables",45,True,low
+Chettinad Chicken,South,non-veg,380,32,12,24.0,2,lunch,"chicken,coconut,fennel,spices",50,True,low
+Fish Curry Kerala Style,South,non-veg,280,28,8,16.0,2,dinner,"fish,coconut,tamarind,curry leaves",40,True,very_low
+Hyderabadi Biryani,South,non-veg,520,25,58,22.0,2,lunch,"rice,chicken,yogurt,saffron",90,False,moderate
+Andhra Chicken Curry,South,non-veg,400,34,10,26.0,2,lunch,"chicken,tamarind,chili,spices",50,True,moderate
+Prawn Masala,South,non-veg,320,26,12,20.0,2,dinner,"prawns,coconut,tamarind,spices",40,True,low
+Fish Fry South Indian,South,non-veg,260,30,8,14.0,1,lunch,"fish,spices,curry leaves",25,True,very_low
+Mutton Chettinad,South,non-veg,450,32,10,32.0,2,dinner,"mutton,coconut,fennel,pepper",75,False,high
+Egg Curry South Style,South,non-veg,240,16,10,16.0,2,lunch,"eggs,coconut,tamarind,spices",30,True,low
+Nadan Chicken Curry,South,non-veg,360,30,12,24.0,2,dinner,"chicken,coconut,curry leaves",45,True,low
+Fish Moilee,South,non-veg,300,28,8,18.0,1,dinner,"fish,coconut milk,turmeric",35,True,low
+Rajma Chawal,North,veg,350,15,58,6.0,12,lunch,"kidney beans,rice,tomatoes,onions",45,True,low
+Chole Bhature,North,veg,520,18,72,18.0,10,breakfast,"chickpeas,flour,yogurt,spices",60,False,moderate
+Palak Paneer,North,veg,280,16,12,20.0,4,lunch,"spinach,cottage cheese,cream",35,True,low
+Dal Makhani,North,veg,320,14,38,12.0,8,dinner,"black lentils,kidney beans,butter,cream",240,False,low
+Aloo Paratha,North,veg,380,8,52,14.0,4,breakfast,"wheat flour,potatoes,butter",40,False,low
+Paneer Tikka,North,veg,320,20,8,24.0,2,snack,"cottage cheese,yogurt,spices",35,True,low
+Aloo Gobi,North,veg,180,5,28,6.0,5,lunch,"potatoes,cauliflower,spices",30,True,low
+Kadhi Pakora,North,veg,280,10,32,12.0,3,lunch,"yogurt,gram flour,spices",45,False,low
+Matar Paneer,North,veg,300,16,18,18.0,4,lunch,"peas,cottage cheese,tomatoes",35,True,low
+Baingan Bharta,North,veg,200,5,22,10.0,6,lunch,"eggplant,tomatoes,onions",40,True,low
+Bhindi Masala,North,veg,160,4,20,8.0,5,lunch,"okra,onions,tomatoes,spices",30,True,low
+Malai Kofta,North,veg,420,12,32,28.0,3,dinner,"cottage cheese,potato,cream,nuts",50,False,moderate
+Sarson Ka Saag,North,veg,220,8,18,14.0,6,lunch,"mustard greens,spinach,butter",45,True,low
+Dahi Bhalla,North,veg,240,8,32,9.0,3,snack,"lentil fritters,yogurt,tamarind",45,False,low
+Pav Bhaji,North,veg,380,10,52,14.0,6,dinner,"mixed vegetables,butter,bread",40,False,low
+Butter Chicken,North,non-veg,450,28,18,32.0,2,dinner,"chicken,butter,cream,tomatoes",50,False,high
+Rogan Josh,North,non-veg,420,30,10,30.0,2,lunch,"mutton,yogurt,kashmiri chili,spices",90,False,moderate
+Tandoori Chicken,North,non-veg,280,35,6,12.0,1,dinner,"chicken,yogurt,spices",240,True,very_low
+Chicken Tikka Masala,North,non-veg,400,32,16,26.0,2,dinner,"chicken,tomato,cream,spices",45,False,moderate
+Keema Matar,North,non-veg,380,28,12,26.0,3,lunch,"minced meat,peas,tomatoes",40,True,low
+Fish Tikka,North,non-veg,240,32,6,10.0,1,snack,"fish,yogurt,spices",35,True,very_low
+Chicken Korma,North,non-veg,460,30,14,32.0,2,dinner,"chicken,yogurt,cream,nuts",50,False,high
+Mutton Keema,North,non-veg,400,32,8,28.0,2,lunch,"minced mutton,spices",45,True,moderate
+Amritsari Fish,North,non-veg,320,28,18,16.0,2,snack,"fish,gram flour,spices",30,True,low
+Chicken Changezi,North,non-veg,440,34,12,30.0,2,dinner,"chicken,tomatoes,cream,spices",50,False,moderate
+Margherita Pizza,Italian,veg,280,12,34,10.0,2,lunch,"dough,tomato,mozzarella,basil",15,True,low
+Pasta Pomodoro,Italian,veg,320,10,58,6.0,3,lunch,"pasta,tomatoes,garlic,basil",20,True,low
+Pasta Carbonara (Veg),Italian,veg,420,16,52,16.0,2,dinner,"pasta,cream,cheese,pepper",25,False,low
+Vegetable Lasagna,Italian,veg,360,18,42,12.0,4,dinner,"pasta,vegetables,ricotta,mozzarella",60,True,low
+Caprese Salad,Italian,veg,200,12,6,14.0,1,lunch,"tomatoes,mozzarella,basil,olive oil",10,True,low
+Penne Arrabbiata,Italian,veg,300,10,54,6.0,3,lunch,"pasta,tomatoes,chili,garlic",20,True,low
+Risotto ai Funghi,Italian,veg,380,10,58,12.0,2,dinner,"arborio rice,mushrooms,parmesan",40,True,low
+Bruschetta,Italian,veg,180,6,26,6.0,2,snack,"bread,tomatoes,garlic,basil",10,True,low
+Minestrone Soup,Italian,veg,160,7,26,4.0,6,lunch,"vegetables,beans,pasta,tomatoes",45,True,low
+Panzanella,Italian,veg,220,6,32,8.0,4,lunch,"bread,tomatoes,cucumber,onion",15,True,low
+Eggplant Parmigiana,Italian,veg,340,16,28,18.0,5,dinner,"eggplant,tomato,mozzarella,parmesan",50,False,low
+Pasta Primavera,Italian,veg,320,12,52,8.0,4,lunch,"pasta,mixed vegetables,olive oil",25,True,low
+Focaccia Bread,Italian,veg,260,7,42,8.0,2,snack,"flour,olive oil,rosemary,salt",90,False,low
+Gnocchi al Pesto,Italian,veg,400,12,56,14.0,3,dinner,"potato gnocchi,basil,pine nuts,parmesan",30,False,low
+Italian Wedding Soup (Veg),Italian,veg,180,8,24,6.0,4,lunch,"vegetables,pasta,beans,herbs",35,True,low
+Spaghetti Bolognese,Italian,non-veg,450,26,56,14.0,3,lunch,"pasta,ground beef,tomatoes,herbs",45,True,moderate
+Chicken Alfredo,Italian,non-veg,520,32,48,22.0,2,dinner,"pasta,chicken,cream,parmesan",30,False,moderate
+Pepperoni Pizza,Italian,non-veg,320,14,36,12.0,2,lunch,"dough,tomato,mozzarella,pepperoni",15,False,low
+Osso Buco,Italian,non-veg,480,38,12,32.0,2,dinner,"veal shanks,tomatoes,wine,herbs",120,False,high
+Chicken Parmigiana,Italian,non-veg,460,36,32,22.0,3,dinner,"chicken,tomato,mozzarella,parmesan",40,False,moderate
+Seafood Risotto,Italian,non-veg,420,28,54,12.0,2,dinner,"arborio rice,shrimp,mussels,fish",45,True,moderate
+Carbonara Original,Italian,non-veg,480,24,52,20.0,2,dinner,"pasta,guanciale,eggs,pecorino",25,False,moderate
+Saltimbocca,Italian,non-veg,380,32,4,26.0,1,dinner,"veal,prosciutto,sage,butter",25,False,moderate
+Cacciatore Chicken,Italian,non-veg,360,34,18,18.0,3,dinner,"chicken,tomatoes,peppers,olives",50,True,low
+Meat Lasagna,Italian,non-veg,480,28,42,22.0,3,dinner,"pasta,ground beef,ricotta,mozzarella",75,False,moderate
+Prosciutto Pizza,Italian,non-veg,340,18,34,14.0,2,lunch,"dough,tomato,mozzarella,prosciutto",15,False,low
+Spaghetti alle Vongole,Italian,non-veg,380,24,54,8.0,2,dinner,"pasta,clams,garlic,white wine",25,True,low
+Tuscan Steak,Italian,non-veg,520,48,2,32.0,0,dinner,"beef steak,olive oil,rosemary",20,True,moderate
+Arancini,Italian,non-veg,320,14,38,12.0,2,snack,"rice,meat,mozzarella,breadcrumbs",45,False,low
+Italian Meatballs,Italian,non-veg,340,26,12,22.0,2,dinner,"ground beef,breadcrumbs,egg,herbs",35,True,low
+Vegetable Spring Rolls,Chinese,veg,180,5,24,8.0,3,snack,"vegetables,wrapper,soy sauce",30,True,low
+Mapo Tofu (Veg),Chinese,veg,260,16,18,14.0,3,lunch,"tofu,chili bean paste,garlic",25,True,low
+Vegetable Fried Rice,Chinese,veg,280,8,48,6.0,3,lunch,"rice,mixed vegetables,soy sauce",20,True,low
+Buddha Bowl,Chinese,veg,320,12,52,8.0,8,lunch,"rice,vegetables,tofu,sesame",25,True,low
+Hot and Sour Soup (Veg),Chinese,veg,120,6,16,4.0,2,lunch,"vegetables,tofu,vinegar,pepper",30,True,low
+Chow Mein (Veg),Chinese,veg,320,10,52,8.0,4,lunch,"noodles,vegetables,soy sauce",25,True,low
+Ma La Noodles (Veg),Chinese,veg,340,12,56,8.0,3,lunch,"noodles,sichuan pepper,vegetables",20,True,low
+Vegetable Dumplings,Chinese,veg,220,8,32,6.0,3,snack,"vegetables,wrapper,ginger",40,True,low
+Kung Pao Tofu,Chinese,veg,300,18,24,14.0,4,dinner,"tofu,peanuts,chili,soy sauce",25,True,low
+Bok Choy Stir Fry,Chinese,veg,140,6,12,8.0,4,lunch,"bok choy,garlic,ginger,soy sauce",15,True,low
+Egg Fried Rice,Chinese,veg,320,12,50,8.0,2,lunch,"rice,eggs,vegetables,soy sauce",20,True,low
+Sesame Noodles,Chinese,veg,360,10,54,12.0,3,lunch,"noodles,sesame paste,vegetables",20,True,low
+Szechuan Eggplant,Chinese,veg,220,6,28,10.0,5,lunch,"eggplant,garlic,chili,soy sauce",25,True,low
+Wonton Soup (Veg),Chinese,veg,200,8,28,6.0,2,lunch,"vegetables,wrapper,broth",35,True,low
+Chinese Mixed Vegetables,Chinese,veg,160,6,22,6.0,5,lunch,"mixed vegetables,soy sauce,ginger",20,True,low
+Sweet and Sour Chicken,Chinese,non-veg,420,28,48,12.0,2,lunch,"chicken,pineapple,peppers,sauce",30,False,low
+Kung Pao Chicken,Chinese,non-veg,380,32,24,18.0,3,dinner,"chicken,peanuts,chili,soy sauce",25,True,low
+Peking Duck,Chinese,non-veg,520,32,12,38.0,1,dinner,"duck,pancakes,cucumber,hoisin",180,False,high
+General Tso Chicken,Chinese,non-veg,480,26,52,18.0,2,dinner,"chicken,chili,garlic,soy sauce",30,False,moderate
+Beef with Broccoli,Chinese,non-veg,320,28,18,16.0,4,lunch,"beef,broccoli,oyster sauce,garlic",20,True,low
+Mongolian Beef,Chinese,non-veg,420,32,28,20.0,2,dinner,"beef,scallions,soy sauce,ginger",25,True,moderate
+Orange Chicken,Chinese,non-veg,460,24,54,16.0,2,dinner,"chicken,orange,chili,soy sauce",30,False,moderate
+Dim Sum Pork,Chinese,non-veg,280,16,24,14.0,2,snack,"pork,wrapper,soy sauce,ginger",45,True,low
+Sichuan Fish,Chinese,non-veg,320,32,12,16.0,2,dinner,"fish,sichuan pepper,chili,garlic",30,True,low
+Char Siu Pork,Chinese,non-veg,380,28,18,22.0,1,dinner,"pork,honey,soy sauce,five spice",120,False,moderate
+Shrimp Fried Rice,Chinese,non-veg,360,22,48,8.0,2,lunch,"rice,shrimp,vegetables,soy sauce",20,True,low
+Chicken Chow Mein,Chinese,non-veg,400,26,52,10.0,3,lunch,"noodles,chicken,vegetables,soy sauce",25,True,moderate
+Mapo Tofu with Pork,Chinese,non-veg,340,24,18,20.0,3,lunch,"tofu,pork,chili bean paste",25,True,low
+Salt and Pepper Squid,Chinese,non-veg,320,26,22,14.0,2,snack,"squid,peppers,salt,garlic",25,True,low
+Crispy Duck Noodles,Chinese,non-veg,480,28,54,18.0,3,dinner,"duck,noodles,vegetables,hoisin",40,False,moderate
+Bean Burrito,Mexican,veg,380,14,58,8.0,12,lunch,"beans,tortilla,cheese,salsa",15,True,low
+Cheese Quesadilla,Mexican,veg,420,18,42,18.0,3,lunch,"tortilla,cheese,peppers,onions",15,False,low
+Vegetable Fajitas,Mexican,veg,280,10,38,10.0,6,dinner,"peppers,onions,tortillas,sour cream",25,True,low
+Black Bean Tacos,Mexican,veg,320,14,48,8.0,10,lunch,"black beans,tortilla,lettuce,salsa",15,True,low
+Guacamole with Chips,Mexican,veg,280,4,32,16.0,8,snack,"avocado,chips,lime,cilantro",10,True,low
+Mexican Rice,Mexican,veg,240,6,46,4.0,3,lunch,"rice,tomatoes,vegetables,spices",25,True,low
+Refried Beans,Mexican,veg,220,12,34,4.0,10,lunch,"pinto beans,onions,garlic",35,True,low
+Vegetarian Enchiladas,Mexican,veg,360,16,44,12.0,8,dinner,"tortilla,beans,cheese,enchilada sauce",40,True,low
+Elote (Mexican Corn),Mexican,veg,200,6,28,8.0,4,snack,"corn,mayo,cheese,chili powder",15,True,low
+Pico de Gallo,Mexican,veg,60,2,12,1.0,3,snack,"tomatoes,onions,cilantro,lime",10,True,low
+Vegetarian Nachos,Mexican,veg,440,14,52,18.0,6,snack,"chips,beans,cheese,jalapeños",20,False,low
+Chilaquiles (Veg),Mexican,veg,340,12,42,14.0,4,breakfast,"tortillas,salsa,cheese,beans",25,False,low
+Chicken Burrito,Mexican,non-veg,520,32,58,16.0,6,lunch,"chicken,beans,rice,tortilla,cheese",20,False,moderate
+Beef Tacos,Mexican,non-veg,380,24,32,18.0,4,lunch,"ground beef,tortilla,lettuce,cheese",25,True,low
+Chicken Fajitas,Mexican,non-veg,420,38,32,16.0,4,dinner,"chicken,peppers,onions,tortillas",30,True,moderate
+Carnitas,Mexican,non-veg,460,32,8,34.0,2,dinner,"pork,orange,spices",180,False,high
+Fish Tacos,Mexican,non-veg,340,28,32,12.0,3,lunch,"fish,tortilla,cabbage,lime",25,True,low
+Chicken Enchiladas,Mexican,non-veg,440,32,42,16.0,4,dinner,"chicken,tortilla,cheese,enchilada sauce",40,True,moderate
+Carne Asada,Mexican,non-veg,480,42,6,30.0,1,dinner,"beef,lime,cilantro,spices",240,True,moderate
+Pollo Asado,Mexican,non-veg,380,40,8,18.0,1,dinner,"chicken,citrus,achiote,spices",120,True,low
+Shrimp Quesadilla,Mexican,non-veg,460,28,38,20.0,3,lunch,"shrimp,cheese,tortilla,peppers",20,False,moderate
+Chicken Tostadas,Mexican,non-veg,380,26,36,14.0,4,lunch,"chicken,crispy tortilla,beans,lettuce",20,True,low
+Barbacoa Beef,Mexican,non-veg,420,36,8,28.0,2,dinner,"beef,chipotle,lime,spices",240,False,moderate
+Chorizo Tacos,Mexican,non-veg,400,20,32,22.0,3,lunch,"chorizo,tortilla,onions,cilantro",20,False,moderate
+Classic Hamburger,American,non-veg,540,28,42,26.0,2,lunch,"beef patty,bun,lettuce,tomato",10,False,moderate
+Cheeseburger,American,non-veg,600,32,44,32.0,2,lunch,"beef patty,cheese,bun,lettuce",10,False,high
+Double Cheeseburger,American,non-veg,780,48,46,44.0,2,lunch,"two beef patties,cheese,bun",12,False,high
+Bacon Cheeseburger,American,non-veg,720,38,44,40.0,2,lunch,"beef,bacon,cheese,bun",12,False,high
+Veggie Burger,American,veg,380,16,48,12.0,6,lunch,"veggie patty,bun,lettuce,tomato",10,True,low
+Chicken Burger,American,non-veg,520,32,46,22.0,2,lunch,"chicken patty,bun,mayo,lettuce",10,False,moderate
+Fish Burger,American,non-veg,480,24,52,18.0,2,lunch,"fish fillet,bun,tartar sauce",10,False,moderate
+BLT Sandwich,American,non-veg,420,18,38,22.0,3,lunch,"bacon,lettuce,tomato,bread,mayo",10,False,moderate
+Club Sandwich,American,non-veg,540,32,44,24.0,3,lunch,"chicken,bacon,lettuce,tomato,bread",15,False,moderate
+Grilled Cheese,American,veg,420,16,42,20.0,2,lunch,"bread,cheese,butter",10,False,low
+Fried Chicken (2 pcs),American,non-veg,480,32,24,28.0,1,lunch,"chicken,flour,spices",20,False,moderate
+Chicken Nuggets (6 pcs),American,non-veg,320,18,22,18.0,1,snack,"chicken,breadcrumbs",10,False,low
+Chicken Wings (6 pcs),American,non-veg,540,36,12,38.0,0,snack,"chicken wings,hot sauce",25,False,high
+Chicken Tenders,American,non-veg,420,28,32,18.0,2,lunch,"chicken breast,breadcrumbs",15,True,moderate
+Buffalo Wings,American,non-veg,580,38,8,42.0,1,snack,"chicken wings,buffalo sauce,butter",25,False,high
+BBQ Chicken,American,non-veg,440,36,28,18.0,2,dinner,"chicken,bbq sauce,spices",45,True,moderate
+Cheese Pizza (2 slices),American,veg,560,24,68,18.0,3,lunch,"dough,cheese,tomato sauce",15,False,moderate
+Pepperoni Pizza (2 slices),American,non-veg,640,28,68,24.0,3,lunch,"dough,cheese,pepperoni",15,False,high
+BBQ Chicken Pizza (2 slices),American,non-veg,620,32,72,20.0,3,lunch,"chicken,bbq sauce,cheese",15,False,high
+Meat Lovers Pizza (2 slices),American,non-veg,740,36,68,32.0,3,lunch,"beef,bacon,sausage,cheese",15,False,high
+French Fries (Medium),American,veg,380,5,48,18.0,4,snack,"potatoes,oil,salt",10,False,low
+Onion Rings,American,veg,420,6,52,20.0,3,snack,"onions,batter,oil",10,False,low
+Mozzarella Sticks (6 pcs),American,veg,480,22,38,24.0,2,snack,"mozzarella,breadcrumbs",10,False,moderate
+Mac and Cheese,American,veg,420,18,46,18.0,2,lunch,"pasta,cheese sauce",15,False,low
+Coleslaw,American,veg,180,2,16,12.0,3,snack,"cabbage,mayo,vinegar",10,True,low
+Potato Wedges,American,veg,320,6,42,14.0,4,snack,"potatoes,spices,oil",15,False,low
+Corn Dog,American,non-veg,380,14,42,16.0,2,snack,"hot dog,cornmeal batter",10,False,low
+Nachos with Cheese,American,veg,520,12,56,26.0,4,snack,"chips,cheese sauce,jalapeños",10,False,moderate
+Pancakes (3 pcs),American,veg,420,10,72,8.0,2,breakfast,"flour,milk,eggs,syrup",20,False,low
+Waffles,American,veg,380,8,62,10.0,2,breakfast,"flour,eggs,milk,syrup",15,False,low
+Bacon and Eggs,American,non-veg,380,24,4,30.0,0,breakfast,"bacon,eggs",10,True,low
+Hash Browns,American,veg,280,4,32,14.0,3,breakfast,"potatoes,oil",10,False,low
+Breakfast Burrito,American,non-veg,540,26,48,26.0,3,breakfast,"eggs,sausage,cheese,tortilla",15,False,moderate
+Egg McMuffin,American,non-veg,300,18,30,12.0,2,breakfast,"egg,cheese,ham,muffin",10,False,low
+Subway Veggie Sub (6 inch),American,veg,280,10,48,4.0,6,lunch,"bread,vegetables,cheese",10,True,low
+Subway Chicken Sub (6 inch),American,non-veg,360,24,46,6.0,4,lunch,"bread,chicken,vegetables",10,True,low
+Chicken Wrap,American,non-veg,420,28,38,16.0,3,lunch,"tortilla,chicken,vegetables,sauce",10,True,moderate
+Falafel Wrap,American,veg,380,14,52,12.0,8,lunch,"tortilla,falafel,hummus,vegetables",10,True,low
+Caesar Salad,American,veg,280,8,18,18.0,4,lunch,"lettuce,parmesan,croutons,dressing",10,True,low
+Chicken Caesar Salad,American,non-veg,420,32,18,24.0,4,lunch,"lettuce,chicken,parmesan,dressing",15,True,moderate
+Vegetable Sushi Roll,Japanese,veg,200,6,38,2.0,3,lunch,"rice,nori,cucumber,avocado",20,True,low
+Miso Soup,Japanese,veg,80,6,10,2.0,2,lunch,"miso paste,tofu,seaweed,scallions",10,True,low
+Edamame,Japanese,veg,120,12,10,5.0,8,snack,"soybeans,salt",10,True,low
+Vegetable Tempura,Japanese,veg,280,6,34,12.0,4,snack,"vegetables,tempura batter",15,True,low
+Tofu Teriyaki,Japanese,veg,240,18,22,8.0,3,lunch,"tofu,teriyaki sauce,vegetables",20,True,low
+Vegetable Ramen,Japanese,veg,380,12,58,10.0,4,lunch,"noodles,vegetables,broth",25,True,low
+Inari Sushi,Japanese,veg,180,8,32,3.0,2,lunch,"rice,tofu pockets,sesame",20,True,low
+Seaweed Salad,Japanese,veg,60,2,10,1.0,4,snack,"seaweed,sesame,vinegar",10,True,low
+Agedashi Tofu,Japanese,veg,220,14,18,10.0,2,snack,"tofu,dashi,ginger,scallions",15,True,low
+Vegetable Gyoza,Japanese,veg,240,8,32,8.0,3,snack,"vegetables,wrapper,soy sauce",30,True,low
+Salmon Sushi (6 pcs),Japanese,non-veg,280,24,36,6.0,2,lunch,"rice,salmon,nori",15,True,very_low
+Tuna Sashimi (6 pcs),Japanese,non-veg,180,32,0,4.0,0,lunch,tuna,10,True,very_low
+Chicken Teriyaki,Japanese,non-veg,420,36,38,12.0,2,dinner,"chicken,teriyaki sauce,rice",25,True,moderate
+Tonkotsu Ramen,Japanese,non-veg,520,32,58,18.0,3,lunch,"noodles,pork,egg,broth",30,False,moderate
+Chicken Katsu,Japanese,non-veg,480,32,42,18.0,2,dinner,"chicken,breadcrumbs,tonkatsu sauce",25,False,moderate
+Tempura Shrimp,Japanese,non-veg,320,22,28,12.0,2,snack,"shrimp,tempura batter",15,True,low
+Beef Teriyaki,Japanese,non-veg,460,38,32,20.0,2,dinner,"beef,teriyaki sauce,vegetables",25,True,moderate
+Unagi Don,Japanese,non-veg,520,28,68,14.0,2,lunch,"eel,rice,teriyaki sauce",20,False,moderate
+Yakitori (3 skewers),Japanese,non-veg,280,28,8,12.0,1,snack,"chicken,scallions,teriyaki",20,True,very_low
+Gyoza Pork,Japanese,non-veg,320,16,32,12.0,2,snack,"pork,vegetables,wrapper",30,True,low
+Salmon Teriyaki,Japanese,non-veg,440,38,32,16.0,2,dinner,"salmon,teriyaki sauce,rice",25,True,moderate
+Chicken Ramen,Japanese,non-veg,460,28,56,14.0,3,lunch,"noodles,chicken,egg,broth",25,False,moderate
+Sushi Platter Mixed,Japanese,non-veg,480,32,62,10.0,3,dinner,"rice,fish,nori,wasabi",30,True,moderate
+Pork Katsu,Japanese,non-veg,540,34,44,22.0,2,dinner,"pork,breadcrumbs,tonkatsu sauce",25,False,moderate
+Chirashi Bowl,Japanese,non-veg,520,36,58,12.0,3,lunch,"rice,assorted fish,vegetables",20,True,moderate
+Pad Thai (Veg),Thai,veg,380,12,58,10.0,4,lunch,"noodles,tofu,peanuts,bean sprouts",20,True,low
+Green Curry (Veg),Thai,veg,320,10,28,18.0,5,lunch,"vegetables,coconut milk,curry paste",30,True,low
+Tom Yum Soup (Veg),Thai,veg,140,6,18,4.0,3,lunch,"vegetables,lemongrass,lime,chili",25,True,low
+Spring Rolls Thai,Thai,veg,200,6,28,7.0,3,snack,"vegetables,rice paper",20,True,low
+Mango Sticky Rice,Thai,veg,320,4,68,6.0,2,snack,"rice,mango,coconut milk",30,False,low
+Papaya Salad,Thai,veg,140,4,22,4.0,6,lunch,"papaya,peanuts,lime,chili",15,True,low
+Vegetable Pad See Ew,Thai,veg,360,10,56,10.0,4,lunch,"noodles,vegetables,soy sauce",20,True,low
+Thai Basil Tofu,Thai,veg,280,16,24,12.0,3,lunch,"tofu,basil,chili,soy sauce",20,True,low
+Pad Thai Chicken,Thai,non-veg,480,28,58,14.0,4,lunch,"noodles,chicken,peanuts,egg",20,True,moderate
+Green Curry Chicken,Thai,non-veg,420,32,28,22.0,4,dinner,"chicken,coconut milk,curry paste",35,True,moderate
+Massaman Curry Beef,Thai,non-veg,520,34,32,28.0,4,dinner,"beef,coconut milk,peanuts,curry",45,False,moderate
+Tom Yum Goong,Thai,non-veg,220,24,18,6.0,3,lunch,"shrimp,lemongrass,lime,mushrooms",25,True,very_low
+Larb Gai,Thai,non-veg,280,32,12,12.0,3,lunch,"minced chicken,lime,herbs,chili",20,True,very_low
+Pad Krapow Chicken,Thai,non-veg,380,28,32,16.0,3,lunch,"chicken,basil,chili,rice",20,True,low
+Red Curry Duck,Thai,non-veg,520,30,28,32.0,3,dinner,"duck,coconut milk,red curry paste",40,False,high
+Thai Fish Cakes,Thai,non-veg,260,24,18,10.0,2,snack,"fish,red curry paste,lime leaves",25,True,very_low
+Pineapple Fried Rice Shrimp,Thai,non-veg,420,22,62,10.0,3,lunch,"rice,shrimp,pineapple,cashews",25,True,moderate
+Beef Satay,Thai,non-veg,360,32,12,22.0,2,snack,"beef,peanut sauce,spices",120,True,low
+Drunken Noodles Pork,Thai,non-veg,480,26,56,18.0,4,lunch,"noodles,pork,basil,chili",25,True,moderate
+Chicken Satay,Thai,non-veg,340,30,12,20.0,2,snack,"chicken,peanut sauce,spices",120,True,low
+Falafel (4 pcs),Middle Eastern,veg,320,14,38,12.0,8,lunch,"chickpeas,herbs,spices",20,True,low
+Hummus with Pita,Middle Eastern,veg,280,10,36,10.0,8,snack,"chickpeas,tahini,lemon,pita",10,True,low
+Tabbouleh,Middle Eastern,veg,180,5,28,6.0,6,lunch,"bulgur,parsley,tomatoes,lemon",20,True,low
+Baba Ganoush,Middle Eastern,veg,200,4,16,14.0,8,snack,"eggplant,tahini,lemon,garlic",40,True,low
+Fattoush Salad,Middle Eastern,veg,220,6,28,10.0,6,lunch,"lettuce,tomatoes,pita chips,sumac",15,True,low
+Muhammara,Middle Eastern,veg,240,6,22,14.0,4,snack,"red peppers,walnuts,pomegranate",15,True,low
+Stuffed Grape Leaves,Middle Eastern,veg,200,6,32,6.0,4,snack,"grape leaves,rice,herbs",45,True,low
+Lentil Soup,Middle Eastern,veg,220,14,36,4.0,12,lunch,"lentils,cumin,lemon,vegetables",35,True,low
+Shakshuka,Middle Eastern,veg,260,14,18,14.0,4,breakfast,"eggs,tomatoes,peppers,spices",25,True,low
+Labneh with Za'atar,Middle Eastern,veg,180,10,8,12.0,1,breakfast,"strained yogurt,za'atar,olive oil",480,True,low
+Mujaddara,Middle Eastern,veg,320,16,54,6.0,12,lunch,"lentils,rice,caramelized onions",50,True,low
+Chicken Shawarma,Middle Eastern,non-veg,420,32,38,16.0,3,lunch,"chicken,pita,tahini,vegetables",240,True,moderate
+Beef Shawarma,Middle Eastern,non-veg,480,34,38,22.0,3,lunch,"beef,pita,tahini,vegetables",240,True,moderate
+Chicken Kebab,Middle Eastern,non-veg,360,38,8,18.0,2,dinner,"chicken,yogurt,spices",120,True,low
+Lamb Kofta,Middle Eastern,non-veg,420,32,12,28.0,2,dinner,"lamb,onions,parsley,spices",30,False,moderate
+Mixed Grill Platter,Middle Eastern,non-veg,620,48,24,38.0,3,dinner,"chicken,beef,lamb,rice",45,False,high
+Mansaf,Middle Eastern,non-veg,580,36,52,24.0,2,lunch,"lamb,rice,yogurt sauce",90,False,moderate
+Chicken Tagine,Middle Eastern,non-veg,440,34,32,20.0,4,dinner,"chicken,olives,preserved lemon",60,True,moderate
+Lamb Biryani Middle Eastern,Middle Eastern,non-veg,560,32,58,24.0,3,lunch,"lamb,rice,saffron,spices",90,False,moderate
+Chicken Fatteh,Middle Eastern,non-veg,480,36,42,18.0,4,lunch,"chicken,pita,yogurt,chickpeas",40,True,moderate
+Beef Kofta with Rice,Middle Eastern,non-veg,520,36,48,20.0,3,lunch,"ground beef,rice,spices",35,True,moderate
+Fish Sayadieh,Middle Eastern,non-veg,460,32,52,14.0,3,lunch,"fish,rice,onions,spices",45,True,moderate
+Chicken Musakhan,Middle Eastern,non-veg,520,38,42,22.0,3,dinner,"chicken,sumac,onions,flatbread",60,False,moderate
+Lamb Kebab,Middle Eastern,non-veg,440,36,8,30.0,2,dinner,"lamb,yogurt,spices",120,False,moderate
+Grilled Fish Middle Eastern,Middle Eastern,non-veg,320,36,6,14.0,2,dinner,"fish,lemon,herbs,tahini",25,True,low
+French Onion Soup,French,veg,280,12,32,10.0,3,lunch,"onions,cheese,bread,broth",60,False,low
+Ratatouille,French,veg,180,5,24,8.0,6,lunch,"eggplant,zucchini,peppers,tomatoes",50,True,low
+Quiche Lorraine (Veg),French,veg,380,14,28,24.0,2,lunch,"eggs,cream,cheese,pastry",45,False,moderate
+Nicoise Salad (Veg),French,veg,280,12,22,16.0,6,lunch,"vegetables,olives,egg,vinaigrette",15,True,low
+Croque Monsieur (Veg),French,veg,480,22,42,24.0,2,lunch,"bread,cheese,bechamel",20,False,moderate
+French Baguette with Cheese,French,veg,320,12,48,8.0,2,snack,"baguette,cheese,butter",5,False,low
+Mushroom Crepes,French,veg,340,14,38,14.0,3,lunch,"crepes,mushrooms,cream,cheese",30,False,low
+Coq au Vin,French,non-veg,480,36,18,28.0,2,dinner,"chicken,red wine,mushrooms,bacon",90,False,moderate
+Beef Bourguignon,French,non-veg,540,38,22,32.0,3,dinner,"beef,red wine,carrots,onions",180,False,high
+Duck Confit,French,non-veg,620,34,8,50.0,1,dinner,"duck,duck fat,herbs",240,False,high
+Escargots,French,non-veg,280,18,8,20.0,1,snack,"snails,garlic butter,parsley",20,False,low
+Quiche Lorraine,French,non-veg,420,18,28,26.0,2,lunch,"eggs,bacon,cream,cheese,pastry",45,False,moderate
+Steak Frites,French,non-veg,680,46,48,34.0,3,dinner,"beef steak,french fries",20,False,high
+Bouillabaisse,French,non-veg,380,32,24,16.0,3,dinner,"fish,shellfish,tomatoes,saffron",60,True,low
+Chicken Cordon Bleu,French,non-veg,560,42,32,28.0,2,dinner,"chicken,ham,cheese,breadcrumbs",40,False,moderate
+Nicoise Salad,French,non-veg,360,28,22,18.0,6,lunch,"tuna,egg,olives,vegetables",15,True,low
+Moules Mariniere,French,non-veg,320,26,18,12.0,2,dinner,"mussels,white wine,cream,herbs",25,True,low
+Salmon en Papillote,French,non-veg,380,36,12,20.0,3,dinner,"salmon,vegetables,herbs",30,True,low
+Cassoulet,French,non-veg,580,36,48,24.0,10,dinner,"beans,duck,sausage,pork",180,False,moderate
+Greek Salad,Greek,veg,220,8,14,16.0,4,lunch,"tomatoes,cucumber,feta,olives,olive oil",10,True,low
+Spanakopita,Greek,veg,340,14,32,18.0,4,lunch,"spinach,feta,phyllo pastry",45,False,low
+Dolmades (Veg),Greek,veg,200,6,32,6.0,4,snack,"grape leaves,rice,herbs,lemon",45,True,low
+Tzatziki with Pita,Greek,veg,240,10,32,8.0,3,snack,"yogurt,cucumber,garlic,pita",15,True,low
+Gigantes Plaki,Greek,veg,280,14,42,6.0,12,lunch,"giant beans,tomatoes,herbs",60,True,low
+Greek Lentil Soup,Greek,veg,240,16,38,4.0,10,lunch,"lentils,tomatoes,vinegar,herbs",45,True,low
+Chicken Souvlaki,Greek,non-veg,380,36,28,14.0,3,lunch,"chicken,pita,tzatziki,vegetables",120,True,low
+Lamb Gyros,Greek,non-veg,520,32,42,24.0,3,lunch,"lamb,pita,tzatziki,tomatoes",180,False,moderate
+Moussaka,Greek,non-veg,480,28,32,26.0,5,dinner,"eggplant,ground beef,bechamel",75,False,moderate
+Greek Meatballs,Greek,non-veg,380,28,16,24.0,2,lunch,"ground beef,herbs,egg,breadcrumbs",30,True,low
+Grilled Octopus,Greek,non-veg,280,32,8,10.0,2,dinner,"octopus,lemon,olive oil,herbs",60,True,very_low
+Pastitsio,Greek,non-veg,520,30,48,22.0,3,dinner,"pasta,ground beef,bechamel",75,False,moderate
+Lamb Kleftiko,Greek,non-veg,560,42,12,38.0,2,dinner,"lamb,potatoes,lemon,herbs",180,False,high
+Grilled Fish Greek Style,Greek,non-veg,320,38,6,14.0,2,dinner,"fish,lemon,olive oil,herbs",25,True,low
+Chicken Gyros,Greek,non-veg,460,34,42,18.0,3,lunch,"chicken,pita,tzatziki,vegetables",120,True,moderate
+Kimchi,Korean,veg,40,2,8,0.5,3,snack,"cabbage,chili,garlic,ginger",48,True,low
+Bibimbap (Veg),Korean,veg,420,14,68,10.0,6,lunch,"rice,vegetables,egg,gochujang",25,True,moderate
+Japchae,Korean,veg,360,8,62,10.0,4,lunch,"sweet potato noodles,vegetables,sesame",30,True,low
+Korean Pancake (Veg),Korean,veg,280,8,42,8.0,3,snack,"flour,vegetables,scallions",20,True,low
+Doenjang Jjigae,Korean,veg,220,12,24,8.0,5,lunch,"soybean paste,tofu,vegetables",25,True,low
+Kimbap (Veg),Korean,veg,320,10,56,6.0,4,lunch,"rice,nori,vegetables,egg",30,True,low
+Bulgogi,Korean,non-veg,420,34,28,18.0,2,dinner,"beef,soy sauce,sugar,garlic",120,True,moderate
+Korean Fried Chicken,Korean,non-veg,520,32,42,24.0,2,dinner,"chicken,sweet chili sauce",40,False,moderate
+Galbi (Short Ribs),Korean,non-veg,580,38,24,38.0,2,dinner,"beef ribs,soy sauce,pear,garlic",240,False,high
+Bibimbap with Beef,Korean,non-veg,520,28,68,14.0,6,lunch,"rice,beef,vegetables,egg,gochujang",30,True,moderate
+Kimchi Jjigae,Korean,non-veg,320,24,22,14.0,4,lunch,"kimchi,pork,tofu,gochugaru",30,True,low
+Korean BBQ Pork,Korean,non-veg,480,32,18,32.0,2,dinner,"pork belly,gochujang,garlic",120,False,high
+Samgyeopsal,Korean,non-veg,560,28,12,44.0,2,dinner,"pork belly,lettuce,garlic,ssamjang",15,False,high
+Seafood Pancake,Korean,non-veg,380,20,42,14.0,3,snack,"seafood,flour,scallions,egg",25,True,low
+Dakgalbi,Korean,non-veg,460,36,32,20.0,4,dinner,"chicken,cabbage,gochujang,rice cakes",35,True,moderate
+Army Stew (Budae Jjigae),Korean,non-veg,480,26,42,20.0,4,lunch,"spam,sausage,noodles,kimchi",25,False,moderate
+Sundubu Jjigae,Korean,non-veg,280,22,18,12.0,3,lunch,"soft tofu,seafood,gochugaru,egg",20,True,very_low
+Jjajangmyeon,Korean,non-veg,520,24,78,14.0,4,lunch,"noodles,pork,black bean sauce",30,False,moderate
+Bossam,Korean,non-veg,420,32,12,28.0,3,dinner,"pork belly,kimchi,garlic,ssamjang",120,False,moderate
+Tteokbokki with Fish Cake,Korean,non-veg,360,12,64,6.0,3,snack,"rice cakes,fish cake,gochujang",20,False,low
+Grilled Vegetable Salad,Continental,veg,150,5,18,6.0,5,lunch,"mixed vegetables,olive oil,herbs",25,True,low
+Pasta Primavera,Continental,veg,380,12,58,12.0,4,lunch,"pasta,vegetables,olive oil,parmesan",30,True,low
+Mushroom Risotto,Continental,veg,420,10,62,14.0,3,dinner,"arborio rice,mushrooms,parmesan,wine",45,False,low
+Vegetable Soup,Continental,veg,120,4,20,3.0,5,lunch,"mixed vegetables,herbs,broth",30,True,low
+Quinoa Salad,Continental,veg,280,10,42,8.0,8,lunch,"quinoa,vegetables,lemon,olive oil",20,True,low
+Spinach Artichoke Dip,Continental,veg,320,12,16,24.0,4,snack,"spinach,artichoke,cream cheese",20,False,moderate
+Tomato Basil Soup,Continental,veg,180,5,26,6.0,4,lunch,"tomatoes,basil,cream,garlic",30,True,low
+Baked Potato with Toppings,Continental,veg,340,12,52,10.0,6,lunch,"potato,sour cream,cheese,chives",60,False,low
+Grilled Chicken Breast,Continental,non-veg,280,42,2,10.0,0,dinner,"chicken breast,herbs,olive oil",25,True,very_low
+Salmon with Vegetables,Continental,non-veg,380,35,12,22.0,4,dinner,"salmon,broccoli,asparagus,lemon",30,True,low
+Steak with Mashed Potatoes,Continental,non-veg,620,45,38,32.0,3,dinner,"beef,potatoes,butter,cream",40,False,high
+Chicken Schnitzel,Continental,non-veg,480,36,38,20.0,2,dinner,"chicken,breadcrumbs,lemon",25,False,moderate
+Fish and Chips,Continental,non-veg,640,32,68,28.0,4,lunch,"fish,potatoes,batter",30,False,high
+Beef Stroganoff,Continental,non-veg,520,34,32,28.0,3,dinner,"beef,mushrooms,sour cream,egg noodles",35,False,moderate
+Chicken Cordon Bleu,Continental,non-veg,560,42,32,28.0,2,dinner,"chicken,ham,cheese,breadcrumbs",40,False,moderate
+Pork Chops with Applesauce,Continental,non-veg,420,38,24,20.0,3,dinner,"pork chops,apples,herbs",30,True,moderate
+Turkey Club Sandwich,Continental,non-veg,480,32,42,20.0,3,lunch,"turkey,bacon,lettuce,tomato,bread",10,False,moderate
+Chicken Caesar Wrap,Continental,non-veg,440,32,36,18.0,3,lunch,"chicken,lettuce,parmesan,tortilla",10,True,moderate
+Beef Wellington,Continental,non-veg,720,42,48,38.0,3,dinner,"beef,mushrooms,puff pastry",120,False,high
+Lobster Thermidor,Continental,non-veg,580,36,18,40.0,2,dinner,"lobster,cream,cheese,brandy",45,False,high
+Patatas Bravas,Spanish,veg,320,5,42,14.0,4,snack,"potatoes,bravas sauce,aioli",30,False,low
+Gazpacho,Spanish,veg,120,3,18,4.0,4,lunch,"tomatoes,cucumber,peppers,garlic",120,True,low
+Spanish Tortilla,Spanish,veg,340,16,28,18.0,3,lunch,"eggs,potatoes,onions",30,False,low
+Pan con Tomate,Spanish,veg,180,5,28,6.0,3,snack,"bread,tomatoes,garlic,olive oil",5,True,low
+Pisto,Spanish,veg,160,4,20,8.0,6,lunch,"vegetables,tomatoes,olive oil",40,True,low
+Paella,Spanish,non-veg,520,32,62,14.0,3,lunch,"rice,seafood,chicken,saffron",60,True,moderate
+Gambas al Ajillo,Spanish,non-veg,320,28,6,22.0,1,snack,"shrimp,garlic,olive oil,chili",15,True,low
+Chorizo a la Sidra,Spanish,non-veg,420,22,12,32.0,2,lunch,"chorizo,cider,onions",25,False,high
+Albondigas,Spanish,non-veg,380,26,18,22.0,3,lunch,"meatballs,tomato sauce,herbs",40,True,low
+Pollo al Ajillo,Spanish,non-veg,380,36,8,22.0,1,dinner,"chicken,garlic,white wine",35,True,low
+Pulpo a la Gallega,Spanish,non-veg,280,32,12,10.0,2,dinner,"octopus,paprika,olive oil,potatoes",60,True,very_low
+Cochinillo Asado,Spanish,non-veg,580,36,8,44.0,1,dinner,"suckling pig,garlic,herbs",180,False,high
+Bacalao al Pil Pil,Spanish,non-veg,360,32,4,24.0,1,dinner,"cod,garlic,olive oil,chili",30,True,low
+Jamón Ibérico,Spanish,non-veg,320,28,2,24.0,0,snack,cured ham,0,False,moderate
+Calamares Fritos,Spanish,non-veg,380,24,32,18.0,2,snack,"squid,flour,lemon",20,False,low
+Chocolate Cake,Dessert,veg,420,6,58,18.0,2,snack,"flour,chocolate,sugar,butter",45,False,low
+Vanilla Ice Cream,Dessert,veg,280,5,32,14.0,0,snack,"cream,sugar,vanilla",240,False,low
+Apple Pie,Dessert,veg,380,4,56,16.0,3,snack,"apples,flour,sugar,butter",60,False,low
+Cheesecake,Dessert,veg,460,8,42,28.0,1,snack,"cream cheese,sugar,graham crackers",360,False,moderate
+Tiramisu,Dessert,veg,420,7,48,20.0,1,snack,"ladyfingers,mascarpone,coffee,cocoa",240,False,low
+Brownies,Dessert,veg,380,5,48,18.0,2,snack,"chocolate,flour,sugar,butter",30,False,low
+Crème Brûlée,Dessert,veg,360,6,36,20.0,0,snack,"cream,egg yolks,sugar,vanilla",360,False,low
+Panna Cotta,Dessert,veg,320,5,32,18.0,0,snack,"cream,sugar,gelatin,vanilla",240,False,low
+Macarons,Dessert,veg,180,3,24,8.0,1,snack,"almond flour,sugar,egg whites",60,False,low
+Croissant,Dessert,veg,280,6,32,14.0,2,breakfast,"flour,butter,sugar",180,False,low
+Donut,Dessert,veg,320,4,42,14.0,1,snack,"flour,sugar,oil",30,False,low
+Cinnamon Roll,Dessert,veg,420,7,62,16.0,2,breakfast,"flour,cinnamon,sugar,butter",120,False,low
+Churros,Dessert,veg,340,5,48,14.0,2,snack,"flour,sugar,oil,cinnamon",20,False,low
+Baklava,Dessert,veg,380,6,48,18.0,3,snack,"phyllo,nuts,honey,butter",90,False,low
+Gulab Jamun,Dessert,veg,260,5,42,8.0,1,snack,"milk solids,sugar,cardamom",45,False,low
+Rasgulla,Dessert,veg,180,6,34,2.0,0,snack,"cottage cheese,sugar",60,False,low
+Jalebi,Dessert,veg,280,3,52,8.0,1,snack,"flour,sugar,saffron",30,False,low
+Kheer,Dessert,veg,240,8,38,6.0,1,snack,"rice,milk,sugar,cardamom",45,False,low
+Mochi,Dessert,veg,200,3,42,2.0,1,snack,"rice flour,sugar,filling",30,False,low
+Mango Lassi,Dessert,veg,220,6,38,6.0,1,snack,"mango,yogurt,sugar",10,False,low
+Flan,Dessert,veg,300,7,42,10.0,0,snack,"eggs,milk,sugar,caramel",360,False,low
+Churro Ice Cream Sundae,Dessert,veg,520,7,72,22.0,2,snack,"churros,ice cream,chocolate sauce",20,False,moderate
+Gelato,Dessert,veg,240,5,34,10.0,0,snack,"milk,sugar,flavoring",240,False,low
+Éclair,Dessert,veg,340,6,38,18.0,1,snack,"choux pastry,cream,chocolate",60,False,low
+Pavlova,Dessert,veg,320,4,58,8.0,2,snack,"meringue,cream,fruits",90,False,low
+Sticky Toffee Pudding,Dessert,veg,460,5,68,18.0,2,snack,"dates,flour,toffee sauce",45,False,moderate
+Red Velvet Cake,Dessert,veg,440,5,56,20.0,2,snack,"flour,cocoa,cream cheese frosting",45,False,low
+Lava Cake,Dessert,veg,480,7,54,24.0,3,snack,"chocolate,flour,butter,sugar",20,False,moderate
+Tres Leches Cake,Dessert,veg,380,8,52,14.0,1,snack,"sponge cake,three milks",240,False,low
+Carrot Cake,Dessert,veg,420,5,58,18.0,3,snack,"carrots,flour,cream cheese frosting",50,False,low
+Protein Shake,Fitness,veg,180,25,12,3.0,2,snack,"whey protein,milk,banana",5,True,very_low
+Greek Yogurt with Berries,Fitness,veg,200,18,24,4.0,3,snack,"greek yogurt,berries,honey",5,True,low
+Overnight Oats,Fitness,veg,280,12,48,6.0,8,breakfast,"oats,milk,chia seeds,fruits",480,True,low
+Chicken and Brown Rice,Fitness,non-veg,420,38,52,6.0,4,lunch,"chicken breast,brown rice,vegetables",30,True,moderate
+Tuna Salad,Fitness,non-veg,280,32,12,10.0,4,lunch,"tuna,lettuce,tomatoes,olive oil",10,True,very_low
+Egg White Omelette,Fitness,veg,180,24,6,4.0,2,breakfast,"egg whites,vegetables,herbs",10,True,very_low
+Sweet Potato with Chicken,Fitness,non-veg,380,36,42,6.0,6,lunch,"chicken,sweet potato,broccoli",35,True,low
+Quinoa Bowl,Fitness,veg,320,12,52,8.0,10,lunch,"quinoa,vegetables,avocado",20,True,low
+Grilled Salmon Salad,Fitness,non-veg,360,34,14,18.0,5,dinner,"salmon,mixed greens,olive oil",25,True,low
+Turkey Breast with Veggies,Fitness,non-veg,280,40,18,4.0,5,lunch,"turkey breast,steamed vegetables",25,True,very_low
+Protein Pancakes,Fitness,veg,320,24,38,8.0,4,breakfast,"protein powder,oats,banana,egg",15,True,low
+Cottage Cheese Bowl,Fitness,veg,220,24,16,6.0,2,snack,"cottage cheese,fruits,nuts",5,True,very_low
+Smoothie Bowl,Fitness,veg,280,10,48,6.0,8,breakfast,"fruits,protein powder,granola,nuts",10,True,low
+Grilled Chicken Salad,Fitness,non-veg,320,38,18,10.0,6,lunch,"chicken,mixed greens,vinaigrette",25,True,low
+Baked Tilapia,Fitness,non-veg,240,36,8,6.0,2,dinner,"tilapia,lemon,herbs,vegetables",20,True,very_low
+Egg and Avocado Toast,Fitness,veg,340,16,32,16.0,8,breakfast,"eggs,avocado,whole wheat bread",10,True,low
+Lentil Soup Fitness,Fitness,veg,260,18,42,4.0,14,lunch,"lentils,vegetables,herbs",35,True,low
+Chickpea Salad,Fitness,veg,280,14,38,8.0,12,lunch,"chickpeas,vegetables,lemon,olive oil",10,True,low
+Protein Bar Homemade,Fitness,veg,240,16,28,8.0,5,snack,"protein powder,oats,peanut butter,honey",120,True,low
+Egg Muffins,Fitness,veg,180,14,8,10.0,2,breakfast,"eggs,vegetables,cheese",25,True,low
+Chicken Wrap (Healthy),Fitness,non-veg,360,32,36,10.0,5,lunch,"chicken,whole wheat tortilla,vegetables",10,True,low
+Tuna Poke Bowl,Fitness,non-veg,420,34,48,10.0,4,lunch,"tuna,rice,edamame,avocado",15,True,moderate
+Protein Cookies,Fitness,veg,200,12,24,6.0,4,snack,"protein powder,oats,peanut butter",20,True,low
+Energy Balls,Fitness,veg,180,6,24,8.0,4,snack,"dates,nuts,protein powder,cocoa",15,True,low
+Baked Cod,Fitness,non-veg,220,34,4,6.0,1,dinner,"cod,lemon,herbs",20,True,very_low

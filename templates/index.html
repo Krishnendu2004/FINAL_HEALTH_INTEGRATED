@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINAL HEALTH · Complete Wellness Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --primary-light: #4895ef;
+            --secondary: #4cc9f0;
+            --success: #06d6a0;
+            --warning: #ffd166;
+            --danger: #ef476f;
+            --dark: #073b4c;
+            --light: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 30px 60px rgba(67, 97, 238, 0.2);
+            --transition: all 0.3s ease;
+            --radius: 24px;
+            --radius-sm: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--gray-800);
+            min-height: 100vh;
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        #loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s ease infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary) !important;
+        }
+
+        .navbar-brand i {
+            margin-right: 0.5rem;
+        }
+
+        .nav-link {
+            color: var(--gray-700) !important;
+            font-weight: 500;
+            margin: 0 0.25rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary) !important;
+        }
+
+        /* Main Container */
+        .main-container {
+            padding: 2rem 0 4rem;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(5px);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-title span {
+            color: var(--warning);
+        }
+
+        .section-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        /* Step Indicator */
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0 3rem;
+            gap: 2rem;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .step.active .step-number {
+            background: var(--warning);
+            color: var(--dark);
+        }
+
+        .step-label {
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step-line {
+            width: 100px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin-top: -25px;
+        }
+
+        /* FIRST SECTION - User Inputs */
+        .user-inputs-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1);
+            outline: none;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Health Tools Grid */
+        .health-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .health-tool-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .health-tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .tool-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            display: none;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .tool-result.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Nutrition Results */
+        .result-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nutrition-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            backdrop-filter: blur(5px);
+        }
+
+        .nutrition-value {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .nutrition-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Meal Plan */
+        .meal-plan-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid var(--primary);
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+        }
+
+        .meal-plan-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .meal-time {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meal-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gray-800);
+        }
+
+        .meal-nutrients {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+            padding-top: 0.5rem;
+            border-top: 2px solid var(--gray-100);
+        }
+
+        .meal-nutrient {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meal-nutrient i {
+            color: var(--primary);
+        }
+
+        /* Food Cards - IMPROVED GRID */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            border: 2px solid transparent;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .health-score {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success) 0%, var(--primary) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+
+        .food-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            padding-right: 3rem;
+            color: var(--gray-800);
+            line-height: 1.3;
+        }
+
+        .food-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            min-height: 60px;
+        }
+
+        .food-badge {
+            background: var(--gray-100);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--gray-700);
+            font-weight: 600;
+        }
+
+        .food-badge.veg {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .food-badge.non-veg {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .food-badge.region {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .food-badge.category {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .food-nutrients {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--gray-100);
+            margin-top: auto;
+        }
+
+        .nutrient {
+            text-align: center;
+        }
+
+        .nutrient-value {
+            font-weight: 700;
+            color: var(--gray-800);
+            font-size: 1rem;
+        }
+
+        .nutrient-label {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            font-weight: 600;
+        }
+
+        /* Ingredient Tags */
+        .ingredient-tag {
+            background: var(--gray-100);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 0.25rem;
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            border: 1px solid var(--gray-200);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            margin: 4rem 0 2rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .divider-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: 1;
+        }
+
+        .divider-text {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--card-shadow);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        /* LAST SECTION - Image Upload */
+        .upload-area {
+            border: 3px dashed var(--gray-300);
+            border-radius: var(--radius);
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--gray-50);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, 0.05);
+        }
+
+        .upload-area i {
+            font-size: 4rem;
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 250px;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        .analysis-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            height: 100%;
+        }
+
+        .prediction-badge {
+            background: linear-gradient(135deg, var(--success) 0%, var(--primary) 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer h5 {
+            color: var(--gray-800);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links a {
+            color: var(--gray-400);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--gray-200);
+            color: var(--gray-500);
+        }
+
+        /* Toast */
+        .toast-message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: white;
+            border-left: 5px solid var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--card-shadow);
+            z-index: 9999;
+            display: none;
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-message.error {
+            border-left-color: var(--danger);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .food-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .food-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nutrition-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .health-tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .step-line {
+                width: 30px;
+            }
+            
+            .step-indicator {
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cuisine Badge */
+        .cuisine-badge {
+            background: var(--warning);
+            color: var(--dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        
+        /* Modal Styles */
+        .modal-content {
+            border-radius: var(--radius);
+            border: none;
+        }
+        
+        .modal-header {
+            border-bottom: 2px solid var(--gray-100);
+            padding: 1.5rem;
+        }
+        
+        .modal-title {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .modal-footer {
+            border-top: 2px solid var(--gray-100);
+            padding: 1.5rem;
+        }
+
+        /* Position Badge */
+        .position-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--warning) 0%, var(--primary) 100%);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <h2 class="text-white mt-4">FINAL HEALTH</h2>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast-message">
+        <span id="toast-message"></span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-heart-pulse"></i>
+                FINAL HEALTH
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">Your Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#results">Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#meal-plan">Meal Plan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#food-database">Food DB</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#food-ai">Food AI</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Hero -->
+        <section id="home" class="container text-center py-4">
+            <h1 class="display-3 fw-bold text-white">Complete Wellness Platform</h1>
+            <p class="text-white-50 fs-5">AI-Powered Health & Nutrition Assistant</p>
+        </section>
+
+        <!-- Step Indicator -->
+        <div class="container">
+            <div class="step-indicator">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Your Details</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Your Results</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Food AI</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 1: USER INPUTS (ENTER ONCE) -->
+        <!-- ============================================ -->
+        <section id="profile" class="container user-inputs-section">
+            <div class="section-header">
+                <div class="section-subtitle">Step 1: Your Information</div>
+                <h2 class="section-title">Tell Us About <span>Yourself</span></h2>
+                <p class="section-description">Enter your details once - all results will use this profile</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-card">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-user me-2 text-primary"></i>Name</label>
+                                    <input type="text" class="form-control" id="userName" value="Athlete" placeholder="Your name">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-calendar-alt me-2 text-primary"></i>Age</label>
+                                    <input type="number" class="form-control" id="age" value="30" min="15" max="100">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-weight-scale me-2 text-primary"></i>Weight (kg)</label>
+                                    <input type="number" class="form-control" id="weight" value="70" min="30" max="200" step="0.1">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-ruler me-2 text-primary"></i>Height (cm)</label>
+                                    <input type="number" class="form-control" id="height" value="170" min="100" max="250" step="0.1">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-venus-mars me-2 text-primary"></i>Gender</label>
+                                    <select class="form-select" id="gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-futbol me-2 text-primary"></i>Position</label>
+                                    <select class="form-select" id="position">
+                                        <option value="goalkeeper">🧤 Goalkeeper</option>
+                                        <option value="defender">🛡️ Defender</option>
+                                        <option value="midfielder">⚡ Midfielder</option>
+                                        <option value="forward">🎯 Forward</option>
+                                        <option value="athlete">💪 General Athlete</option>
+                                        <option value="sedentary">🪑 Sedentary</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-person-running me-2 text-primary"></i>Activity Level</label>
+                                    <select class="form-select" id="activity">
+                                        <option value="sedentary">Sedentary (Office Job)</option>
+                                        <option value="light">Light (1-3 days/week)</option>
+                                        <option value="moderate" selected>Moderate (3-5 days/week)</option>
+                                        <option value="active">Active (6-7 days/week)</option>
+                                        <option value="very_active">Very Active (Athlete)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-bullseye me-2 text-primary"></i>Goal</label>
+                                    <select class="form-select" id="goal">
+                                        <option value="weight_loss">Weight Loss</option>
+                                        <option value="maintenance" selected>Maintenance</option>
+                                        <option value="muscle_gain">Muscle Gain</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-leaf me-2 text-primary"></i>Dietary Preference</label>
+                                    <select class="form-select" id="preference">
+                                        <option value="all">All</option>
+                                        <option value="veg">Vegetarian</option>
+                                        <option value="non-veg">Non-Vegetarian</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-globe me-2 text-primary"></i>Preferred Cuisine</label>
+                                    <select class="form-select" id="cuisine">
+                                        <option value="All">🌍 All Cuisines</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label"><i class="fas fa-clock me-2 text-primary"></i>Exercise (hrs/day)</label>
+                                    <input type="number" class="form-control" id="exercise" value="1.5" min="0" max="10" step="0.5">
+                                </div>
+                            </div>
+                            <div class="col-12 text-center mt-4">
+                                <button class="btn-primary px-5 py-3" onclick="calculateNutrition()">
+                                    <i class="fas fa-magic me-2"></i>Generate My Results
+                                </button>
+                                <p class="text-muted mt-2 small">All health tools and food recommendations will use this profile</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- STEP 2: HEALTH TOOLS & RESULTS -->
+        <!-- ============================================ -->
+        <section id="results" class="container py-5">
+            <div class="section-header">
+                <div class="section-subtitle">Step 2: Your Results</div>
+                <h2 class="section-title">Health <span>Calculators</span></h2>
+                <p class="section-description">Click on any tool to calculate instantly using your profile</p>
+            </div>
+
+            <!-- Health Tools Grid -->
+            <div class="health-tools-grid">
+                <div class="health-tool-card" onclick="showBMICalculator()">
+                    <div class="tool-icon"><i class="fas fa-ruler"></i></div>
+                    <h5>BMI Calculator</h5>
+                    <p class="small text-muted">Body Mass Index</p>
+                    <div id="bmiResult" class="tool-result"></div>
+                </div>
+                <div class="health-tool-card" onclick="showWaterCalculator()">
+                    <div class="tool-icon"><i class="fas fa-droplet"></i></div>
+                    <h5>Water Intake</h5>
+                    <p class="small text-muted">Daily hydration</p>
+                    <div id="waterResult" class="tool-result"></div>
+                </div>
+                <div class="health-tool-card" onclick="showSleepCalculator()">
+                    <div class="tool-icon"><i class="fas fa-moon"></i></div>
+                    <h5>Sleep Analysis</h5>
+                    <p class="small text-muted">Optimal sleep</p>
+                    <div id="sleepResult" class="tool-result"></div>
+                </div>
+                <div class="health-tool-card" onclick="showIdealWeight()">
+                    <div class="tool-icon"><i class="fas fa-weight-scale"></i></div>
+                    <h5>Ideal Weight</h5>
+                    <p class="small text-muted">Healthy weight</p>
+                    <div id="weightResult" class="tool-result"></div>
+                </div>
+            </div>
+
+            <!-- Nutrition Results -->
+            <div class="glass-card mt-4" id="nutritionResults">
+                <h4 class="text-center mb-4">Your Daily Nutrition</h4>
+                <div class="result-card mb-4">
+                    <div class="nutrition-grid">
+                        <div class="nutrition-item">
+                            <div class="nutrition-value" id="caloriesResult">2000</div>
+                            <div class="nutrition-label">Calories</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value" id="proteinResult">100g</div>
+                            <div class="nutrition-label">Protein</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value" id="carbsResult">250g</div>
+                            <div class="nutrition-label">Carbs</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value" id="fatResult">55g</div>
+                            <div class="nutrition-label">Fat</div>
+                        </div>
+                    </div>
+                </div>
+                <canvas id="macroChart" height="200"></canvas>
+            </div>
+        </section>
+
+        <!-- Meal Plan Section (Based on Position) -->
+        <section id="meal-plan" class="container py-4">
+            <div class="section-header">
+                <div class="section-subtitle">Your Personalized Plan</div>
+                <h2 class="section-title">Position-Based <span>Meal Plan</span></h2>
+                <p class="section-description">Optimized for your role and goals</p>
+                <div class="position-badge" id="positionDisplay">⚡ Midfielder</div>
+            </div>
+
+            <div id="mealPlan" class="row">
+                <div class="col-12">
+                    <div class="glass-card text-center py-5">
+                        <i class="fas fa-utensils fa-4x mb-3 text-muted opacity-50"></i>
+                        <p class="text-muted">Click "Generate My Results" to see your personalized meal plan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Food Recommendations Section - USES PROFILE, NO EXTRA INPUTS -->
+        <section id="food-database" class="container py-5">
+            <div class="section-header">
+                <div class="section-subtitle">Explore Foods</div>
+                <h2 class="section-title">Food <span>Database</span></h2>
+                <p class="section-description">Based on your profile preferences</p>
+                <div class="mt-2">
+                    <span class="badge bg-primary me-2" id="activeCuisine">🌍 All Cuisines</span>
+                    <span class="badge bg-success me-2" id="activePreference">🌱 All Types</span>
+                    <span class="badge bg-warning text-dark" id="activePosition">⚡ Midfielder</span>
+                </div>
+            </div>
+
+            <!-- NO FILTERS - Using profile only -->
+            <!-- Search only - keeps cuisine/preference from profile -->
+            <div class="row mb-4 justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="fas fa-search text-primary"></i></span>
+                        <input type="text" class="form-control" id="searchFood" placeholder="🔍 Search foods by name...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Grid -->
+            <div id="foodList" class="food-grid">
+                <!-- Foods will be loaded here -->
+                <div class="text-center py-5" style="grid-column: 1 / -1;">
+                    <div class="loader" style="margin: 0 auto;"></div>
+                    <p class="text-white mt-3">Loading foods based on your profile...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- SECTION DIVIDER -->
+        <!-- ============================================ -->
+        <div class="container">
+            <div class="section-divider">
+                <div class="divider-line"></div>
+                <span class="divider-text">🤖 AI FOOD RECOGNITION</span>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 3: FOOD IMAGE UPLOAD -->
+        <!-- ============================================ -->
+        <section id="food-ai" class="container py-4">
+            <div class="section-header">
+                <div class="section-subtitle">Step 3: AI Recognition</div>
+                <h2 class="section-title">Food <span>Identifier</span></h2>
+                <p class="section-description">Upload a photo to identify food instantly</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="glass-card">
+                        <!-- Upload Area -->
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h4>Drop your food image here</h4>
+                            <p class="text-muted">or click to browse (PNG, JPG)</p>
+                            <input type="file" id="foodImage" accept="image/*" style="display: none;">
+                        </div>
+                        
+                        <!-- Image Preview -->
+                        <div class="image-preview" id="imagePreview" style="display: none;">
+                            <img id="preview" src="#" alt="Preview" class="preview-image">
+                            <button class="btn btn-sm btn-danger mt-2" onclick="resetUpload()">
+                                <i class="fas fa-times"></i> Upload Another
+                            </button>
+                        </div>
+                        
+                        <!-- Result -->
+                        <div id="analysisResult" class="mt-4">
+                            <div class="text-center text-muted py-4">
+                                <i class="fas fa-image fa-3x mb-2 opacity-50"></i>
+                                <p>Upload an image to identify food</p>
+                            </div>
+                        </div>
+
+                        <!-- Model Status (Hidden by default) -->
+                        <div class="text-center mt-3">
+                            <small>
+                                <a href="#" onclick="checkModelStatus(); return false;" class="text-muted">
+                                    <i class="fas fa-stethoscope"></i> Check system status
+                                </a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <h5>FINAL HEALTH</h5>
+                        <p class="text-muted">Complete wellness platform using advanced AI models for personalized health recommendations.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <h5>Quick Links</h5>
+                        <ul class="footer-links">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#profile">Your Profile</a></li>
+                            <li><a href="#results">Results</a></li>
+                            <li><a href="#food-ai">Food AI</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <h5>Features</h5>
+                        <ul class="footer-links">
+                            <li><a href="#results">BMI Calculator</a></li>
+                            <li><a href="#results">Water Intake</a></li>
+                            <li><a href="#results">Sleep Analysis</a></li>
+                            <li><a href="#meal-plan">Meal Planner</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <h5>Contact</h5>
+                        <ul class="footer-links">
+                            <li><i class="fas fa-envelope me-2"></i> support@finalhealth.ai</li>
+                            <li><i class="fas fa-map-marker-alt me-2"></i> San Francisco, CA</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2024 FINAL HEALTH. All rights reserved. Powered by AI.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
