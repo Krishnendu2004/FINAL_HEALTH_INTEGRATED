@@ -850,7 +850,16 @@ function predictFood() {
                 'high calorie':      { color: '#dc2626', bg: '#fef2f2', border: '#fca5a5', label: 'High Calorie',      tips: ['Best consumed post-workout for muscle recovery', 'Limit to one serving — avoid doubling up', 'Balance your plate with vegetables or salad', 'Avoid late-night consumption'] },
                 'very high calorie': { color: '#7c3aed', bg: '#f5f3ff', border: '#c4b5fd', label: 'Very High Calorie', tips: ['Treat as an occasional indulgence only', 'Recommended for high-intensity training days', 'Split into smaller portions across the day', 'Pair with high-fiber foods to slow digestion'] }
             };
-            const rec = recMap[catKey] || recMap['moderate calorie'];
+           const rec = recMap[catKey] || recMap['moderate calorie'];
+
+            // Detect liquid vs solid
+            const liquidList = ['chai'];
+            const solidList = ['burger', 'butter naan', 'chapati', 'chole bhature', 'dal makhani', 'dhokla', 'fried rice', 'idli', 'jalebi', 'kaathi rolls', 'kadai paneer', 'kulfi', 'masala dosa', 'momos', 'pani puri', 'pakode', 'pav bhaji', 'pizza', 'samosa'];
+            const foodLower = pred.food.toLowerCase();
+            const isLiquid = liquidList.some(l => foodLower.includes(l)) && !solidList.some(s => foodLower.includes(s));
+            const unit = isLiquid ? 'ml' : 'g';
+            const unitLabel = isLiquid ? 'per 100ml' : 'per 100g';
+
 
             analysisResult.innerHTML = `
                 <div class="pred-card">
@@ -871,13 +880,13 @@ function predictFood() {
                             </span>
                         </div>
 
-                        <!-- Per-100g stat -->
+                        <!-- Per-100 stat -->
                         <div class="pred-base-stat">
                             <span class="pred-base-num">${baseCalPer100g}</span>
-                            <span class="pred-base-unit">kcal per 100g</span>
+                            <span class="pred-base-unit">kcal ${unitLabel}</span>
                         </div>
 
-                        <!-- Gram input row -->
+                        <!-- Serving input row -->
                         <div class="pred-gram-row">
                             <label class="pred-gram-label">Enter serving size</label>
                             <div class="pred-gram-input-wrap">
@@ -888,9 +897,9 @@ function predictFood() {
                                     value="100"
                                     min="1"
                                     max="2000"
-                                    oninput="recalcCalories(${baseCalPer100g})"
+                                    oninput="recalcCalories(${baseCalPer100g}, '${unit}')"
                                 />
-                                <span class="pred-gram-unit">g</span>
+                                <span class="pred-gram-unit">${unit}</span>
                             </div>
                             <div class="pred-gram-result" id="gramResult">
                                 = <strong>${baseCalPer100g}</strong> kcal
@@ -935,9 +944,9 @@ function predictFood() {
         `;
     });
 }
-function recalcCalories(basePer100g) {
-    const grams = parseFloat(document.getElementById('gramInput')?.value) || 100;
-    const total = Math.round((basePer100g / 100) * grams);
+function recalcCalories(basePer100, unit) {
+    const amount = parseFloat(document.getElementById('gramInput')?.value) || 100;
+    const total = Math.round((basePer100 / 100) * amount);
     const el = document.getElementById('gramResult');
     if (el) el.innerHTML = `= <strong>${total}</strong> kcal`;
 }
