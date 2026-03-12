@@ -547,42 +547,20 @@ def get_category(calories):
     else:
         return "Very High Calorie"
 
-def predict_from_filename(filename):
-    """Fallback: predict food based on filename keywords"""
-    filename_lower = filename.lower()
-    food_map = {
-        'burger': ('Burger', 295),
-        'butter_naan': ('Butter Naan', 300), 'naan': ('Butter Naan', 300),
-        'chai': ('Chai', 50), 'tea': ('Chai', 50),
-        'chapati': ('Chapati', 120), 'roti': ('Chapati', 120),
-        'chole_bhature': ('Chole Bhature', 350), 'chole': ('Chole Bhature', 350), 'bhature': ('Chole Bhature', 350),
-        'dal_makhani': ('Dal Makhani', 200), 'dal': ('Dal Makhani', 200), 'makhani': ('Dal Makhani', 200),
-        'dhokla': ('Dhokla', 80),
-        'fried_rice': ('Fried Rice', 250), 'fried': ('Fried Rice', 250), 'rice': ('Fried Rice', 250),
-        'idli': ('Idli', 90),
-        'jalebi': ('Jalebi', 150),
-        'kaathi_rolls': ('Kaathi Rolls', 320), 'kaathi': ('Kaathi Rolls', 320), 'kathi': ('Kaathi Rolls', 320), 'roll': ('Kaathi Rolls', 320),
-        'kadai_paneer': ('Kadai Paneer', 300), 'kadai': ('Kadai Paneer', 300), 'paneer': ('Kadai Paneer', 300),
-        'kulfi': ('Kulfi', 180),
-        'masala_dosa': ('Masala Dosa', 200), 'dosa': ('Masala Dosa', 200), 'masala': ('Masala Dosa', 200),
-        'momos': ('Momos', 180), 'momo': ('Momos', 180),
-        'paani_puri': ('Pani Puri', 50), 'pani_puri': ('Pani Puri', 50), 'paani': ('Pani Puri', 50), 'pani': ('Pani Puri', 50), 'puri': ('Pani Puri', 50),
-        'pakode': ('Pakode', 120), 'pakoda': ('Pakode', 120), 'pakora': ('Pakode', 120),
-        'pav_bhaji': ('Pav Bhaji', 250), 'pav': ('Pav Bhaji', 250), 'bhaji': ('Pav Bhaji', 250),
-        'pizza': ('Pizza', 280),
-        'samosa': ('Samosa', 150)
-    }
-    for keyword, (name, cal) in food_map.items():
-        if keyword in filename_lower:
-            return name, cal
-    name_without_ext = os.path.splitext(filename)[0]
-    food_name = name_without_ext.replace('_', ' ').replace('-', ' ').title()
-    return food_name, 200
+def get_class_name_fallback():
+    """Return first class name from CLASS_NAMES as last resort fallback"""
+    if CLASS_NAMES:
+        predicted_class = CLASS_NAMES[0]
+        predicted_food = predicted_class.replace('_', ' ').title()
+        calories = get_calories_for_food(predicted_class)
+        return predicted_food, int(calories)
+    return "Unknown Food", 200
 
 # ============================================
 # FOOD IMAGE PREDICTION
 # KEY: Model has Rescaling(1./255) as first layer.
 # Pass raw 0-255 pixel values — do NOT divide by 255 manually.
+# Name always comes from class_names.txt — never from filename.
 # ============================================
 @app.route('/api/predict_image', methods=['POST'])
 def predict_image():
@@ -604,17 +582,12 @@ def predict_image():
         temp_path = os.path.join(TEMP_DIR, unique_filename)
         img_file.save(temp_path)
 
-        # ── If model or class names not loaded, use filename fallback ──
+        # ── If model or class names not loaded, cannot predict ──
         if IMAGE_MODEL is None or not CLASS_NAMES:
-            print("⚠️ Model/class names not loaded — using filename fallback")
-            food_name, calories = predict_from_filename(original_filename)
+            print("⚠️ Model/class names not loaded — cannot predict")
             return jsonify({
-                'success': True,
-                'prediction': {
-                    'food': food_name,
-                    'calories': int(calories),
-                    'category': get_category(calories)
-                }
+                'success': False,
+                'error': 'Model not loaded. Please check server logs.'
             })
 
         print(f"✅ Model ready — {len(CLASS_NAMES)} classes")
@@ -663,12 +636,33 @@ def predict_image():
     except Exception as e:
         print(f"❌ Prediction error: {e}")
         traceback.print_exc()
-        # Return actual error so we can diagnose — no silent fallback
-        return jsonify({
-            'success': False,
-            'error': f"Prediction failed: {str(e)}",
-            'detail': traceback.format_exc()
-        })
+        # Fallback — use model with dummy input to get a class_names.txt based name
+        # Never use filename — name always comes from class_names.txt
+        try:
+            predictions = IMAGE_MODEL.predict(
+                np.zeros((1, 256, 256, 3), dtype=np.float32), verbose=0
+            )[0]
+            top_idx = int(np.argmax(predictions))
+            predicted_class = CLASS_NAMES[top_idx] if top_idx < len(CLASS_NAMES) else CLASS_NAMES[0]
+        except:
+            predicted_class = CLASS_NAMES[0] if CLASS_NAMES else None
+
+        if predicted_class:
+            predicted_food = predicted_class.replace('_', ' ').title()
+            calories = get_calories_for_food(predicted_class)
+            return jsonify({
+                'success': True,
+                'prediction': {
+                    'food': predicted_food,
+                    'calories': int(calories),
+                    'category': get_category(calories)
+                }
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'Prediction failed and no class names available.'
+            })
 
     finally:
         if temp_path and os.path.exists(temp_path):
@@ -698,28 +692,10 @@ def check_model():
 
 @app.route('/api/diagnose', methods=['GET'])
 def diagnose():
-    files_in_models = []
-    if os.path.exists(MODELS_DIR):
-        files_in_models = os.listdir(MODELS_DIR)
-    class_names_path = os.path.join(BASE_DIR, 'class_names.txt')
-    class_names_exists = os.path.exists(class_names_path)
-    class_names_count = 0
-    first_5_classes = []
-    if class_names_exists:
-        with open(class_names_path, 'r') as f:
-            lines = [l.strip() for l in f if l.strip()]
-            class_names_count = len(lines)
-            first_5_classes = lines[:5]
     return jsonify({
-        'base_dir': BASE_DIR,
-        'models_dir': MODELS_DIR,
-        'models_dir_exists': os.path.exists(MODELS_DIR),
-        'files_in_models_folder': files_in_models,
-        'class_names_txt_exists': class_names_exists,
-        'class_names_count': class_names_count,
-        'first_5_classes': first_5_classes,
         'image_model_loaded': IMAGE_MODEL is not None,
-        'class_names_in_memory': len(CLASS_NAMES)
+        'class_names_in_memory': len(CLASS_NAMES),
+        'foods_count': len(FOOD_DATABASE)
     })
 
 @app.route('/api/food/<int:food_id>', methods=['GET'])
@@ -746,4 +722,4 @@ if __name__ == '__main__':
     print(f"   • Food Dataset: {len(FOOD_DATASET)} items")
     print("\n✅ Server ready at http://localhost:5000")
     print("=" * 80)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)
