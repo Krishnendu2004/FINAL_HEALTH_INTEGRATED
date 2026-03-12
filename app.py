@@ -12,7 +12,7 @@ import warnings
 from werkzeug.utils import secure_filename
 import uuid
 import json
-
+import traceback
 
 warnings.filterwarnings('ignore')
 
@@ -78,12 +78,24 @@ def load_image_model():
         ]
         for path in paths:
             if os.path.exists(path):
+                print(f"🔄 Loading image model from {os.path.basename(path)}...")
                 model = load_model(path, compile=False)
                 print(f"✅ Food Image model loaded from {os.path.basename(path)}")
+                print(f"   Input shape:  {model.input_shape}")
+                print(f"   Output shape: {model.output_shape}")
+                # Warm up with dummy prediction so graph is compiled
+                try:
+                    dummy = np.zeros((1, 256, 256, 3), dtype=np.float32)
+                    _ = model.predict(dummy, verbose=0)
+                    print(f"✅ Model warmed up successfully")
+                except Exception as warm_err:
+                    print(f"⚠️ Warmup failed (non-fatal): {warm_err}")
                 return model
+        print("⚠️ No image model file found in models directory")
         return None
     except Exception as e:
         print(f"⚠️ Error loading image model: {e}")
+        traceback.print_exc()
         return None
 
 def load_class_names():
@@ -477,7 +489,6 @@ def calculate_nutrition():
         })
     except Exception as e:
         print(f"Error in calculate_nutrition: {e}")
-        import traceback
         traceback.print_exc()
         return jsonify({'success': False, 'error': str(e)}), 400
 
@@ -526,7 +537,6 @@ def get_calories_for_food(predicted_class):
     print(f"⚠️ No calorie match for '{food_key}', using default 200 kcal")
     return 200
 
-
 def get_category(calories):
     if calories <= 100:
         return "Low Calorie"
@@ -536,7 +546,6 @@ def get_category(calories):
         return "High Calorie"
     else:
         return "Very High Calorie"
-
 
 def predict_from_filename(filename):
     """Fallback: predict food based on filename keywords"""
@@ -570,10 +579,9 @@ def predict_from_filename(filename):
     food_name = name_without_ext.replace('_', ' ').replace('-', ' ').title()
     return food_name, 200
 
-
 # ============================================
 # FOOD IMAGE PREDICTION
-# KEY: Your model has Rescaling(1./255) as first layer.
+# KEY: Model has Rescaling(1./255) as first layer.
 # Pass raw 0-255 pixel values — do NOT divide by 255 manually.
 # ============================================
 @app.route('/api/predict_image', methods=['POST'])
@@ -586,44 +594,46 @@ def predict_image():
         return jsonify({'success': False, 'error': 'No image selected'}), 400
 
     temp_path = None
-    try:
-        print(f"\n🔍 Analyzing image: {img_file.filename}")
+    original_filename = img_file.filename
 
-        # If model or class names not loaded, fall back to filename prediction
+    try:
+        print(f"\n🔍 Analyzing image: {original_filename}")
+
+        # Save uploaded file temporarily
+        unique_filename = str(uuid.uuid4()) + '_' + secure_filename(original_filename)
+        temp_path = os.path.join(TEMP_DIR, unique_filename)
+        img_file.save(temp_path)
+
+        # ── If model or class names not loaded, use filename fallback ──
         if IMAGE_MODEL is None or not CLASS_NAMES:
             print("⚠️ Model/class names not loaded — using filename fallback")
-            food_name, calories = predict_from_filename(img_file.filename)
+            food_name, calories = predict_from_filename(original_filename)
             return jsonify({
                 'success': True,
                 'prediction': {
                     'food': food_name,
-                    'calories': calories,
+                    'calories': int(calories),
                     'category': get_category(calories)
                 }
             })
 
-        # Save uploaded file temporarily
-        unique_filename = str(uuid.uuid4()) + '_' + secure_filename(img_file.filename)
-        temp_path = os.path.join(TEMP_DIR, unique_filename)
-        img_file.save(temp_path)
+        print(f"✅ Model ready — {len(CLASS_NAMES)} classes")
 
-        # ── Preprocess ──
-        # Model first layer: Rescaling(1./255) — so pass raw 0-255 float32 values.
-        # Do NOT divide by 255 here or predictions will be wrong (double normalisation).
+        # ── Preprocess: pass raw 0-255, model rescales internally ──
         img = Image.open(temp_path).convert("RGB")
         img = img.resize((256, 256))
-        img_array = np.array(img, dtype=np.float32)        # range: 0–255
-        img_array = np.expand_dims(img_array, axis=0)      # shape: (1, 256, 256, 3)
+        img_array = np.array(img, dtype=np.float32)       # range: 0–255, NOT divided
+        img_array = np.expand_dims(img_array, axis=0)     # shape: (1, 256, 256, 3)
 
-        print(f"✅ Preprocessed — shape: {img_array.shape}, range: {img_array.min():.0f}–{img_array.max():.0f}")
+        print(f"   Shape: {img_array.shape}, Range: {img_array.min():.0f}–{img_array.max():.0f}")
 
         # ── Predict ──
         predictions = IMAGE_MODEL.predict(img_array, verbose=0)[0]
 
         # Log top 5
-        top5 = np.argsort(predictions)[-5:][::-1]
+        top5_idx = np.argsort(predictions)[-5:][::-1]
         print("📊 Top 5 predictions:")
-        for i, idx in enumerate(top5):
+        for i, idx in enumerate(top5_idx):
             if idx < len(CLASS_NAMES):
                 print(f"   {i+1}. {CLASS_NAMES[idx]}: {predictions[idx]*100:.1f}%")
 
@@ -631,11 +641,11 @@ def predict_image():
         top_confidence = float(predictions[top_idx])
 
         if top_idx >= len(CLASS_NAMES):
-            raise ValueError(f"Invalid prediction index: {top_idx}")
+            raise ValueError(f"Prediction index {top_idx} out of range ({len(CLASS_NAMES)} classes)")
 
         predicted_class = CLASS_NAMES[top_idx]
         predicted_food = predicted_class.replace('_', ' ').title()
-        print(f"✅ Result: {predicted_food} ({top_confidence*100:.1f}%)")
+        print(f"✅ Predicted: {predicted_food} ({top_confidence*100:.1f}% confidence)")
 
         # ── Calorie lookup ──
         calories = get_calories_for_food(predicted_class)
@@ -644,7 +654,7 @@ def predict_image():
             'success': True,
             'prediction': {
                 'food': predicted_food,
-                'calories': calories,
+                'calories': int(calories),
                 'category': get_category(calories),
                 'confidence': round(top_confidence * 100, 1)
             }
@@ -652,17 +662,12 @@ def predict_image():
 
     except Exception as e:
         print(f"❌ Prediction error: {e}")
-        import traceback
         traceback.print_exc()
-        # Graceful fallback
-        food_name, calories = predict_from_filename(img_file.filename)
+        # Return actual error so we can diagnose — no silent fallback
         return jsonify({
-            'success': True,
-            'prediction': {
-                'food': food_name,
-                'calories': calories,
-                'category': get_category(calories)
-            }
+            'success': False,
+            'error': f"Prediction failed: {str(e)}",
+            'detail': traceback.format_exc()
         })
 
     finally:
@@ -671,7 +676,6 @@ def predict_image():
                 os.remove(temp_path)
             except:
                 pass
-
 
 @app.route('/api/check_model', methods=['GET'])
 def check_model():
@@ -692,6 +696,31 @@ def check_model():
         status['first_10_classes'] = CLASS_NAMES[:10]
     return jsonify(status)
 
+@app.route('/api/diagnose', methods=['GET'])
+def diagnose():
+    files_in_models = []
+    if os.path.exists(MODELS_DIR):
+        files_in_models = os.listdir(MODELS_DIR)
+    class_names_path = os.path.join(BASE_DIR, 'class_names.txt')
+    class_names_exists = os.path.exists(class_names_path)
+    class_names_count = 0
+    first_5_classes = []
+    if class_names_exists:
+        with open(class_names_path, 'r') as f:
+            lines = [l.strip() for l in f if l.strip()]
+            class_names_count = len(lines)
+            first_5_classes = lines[:5]
+    return jsonify({
+        'base_dir': BASE_DIR,
+        'models_dir': MODELS_DIR,
+        'models_dir_exists': os.path.exists(MODELS_DIR),
+        'files_in_models_folder': files_in_models,
+        'class_names_txt_exists': class_names_exists,
+        'class_names_count': class_names_count,
+        'first_5_classes': first_5_classes,
+        'image_model_loaded': IMAGE_MODEL is not None,
+        'class_names_in_memory': len(CLASS_NAMES)
+    })
 
 @app.route('/api/food/<int:food_id>', methods=['GET'])
 def get_food(food_id):
@@ -699,7 +728,6 @@ def get_food(food_id):
     if food:
         return jsonify({'success': True, 'food': food})
     return jsonify({'success': False, 'error': 'Food not found'}), 404
-
 
 # ============================================
 # MAIN
