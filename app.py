@@ -547,20 +547,12 @@ def get_category(calories):
     else:
         return "Very High Calorie"
 
-def get_class_name_fallback():
-    """Return first class name from CLASS_NAMES as last resort fallback"""
-    if CLASS_NAMES:
-        predicted_class = CLASS_NAMES[0]
-        predicted_food = predicted_class.replace('_', ' ').title()
-        calories = get_calories_for_food(predicted_class)
-        return predicted_food, int(calories)
-    return "Unknown Food", 200
-
 # ============================================
 # FOOD IMAGE PREDICTION
 # KEY: Model has Rescaling(1./255) as first layer.
 # Pass raw 0-255 pixel values — do NOT divide by 255 manually.
 # Name always comes from class_names.txt — never from filename.
+# Non-food images rejected via confidence threshold (< 0.40).
 # ============================================
 @app.route('/api/predict_image', methods=['POST'])
 def predict_image():
@@ -615,6 +607,15 @@ def predict_image():
 
         if top_idx >= len(CLASS_NAMES):
             raise ValueError(f"Prediction index {top_idx} out of range ({len(CLASS_NAMES)} classes)")
+
+        # ── Reject non-food images via confidence threshold ──
+        # To this
+        if top_confidence < 0.60:
+            print(f"⚠️ Low confidence ({top_confidence*100:.1f}%) — likely not a food image")
+            return jsonify({
+                'success': False,
+                'error': f'This does not appear to be a recognizable food image (confidence: {round(top_confidence*100, 1)}%). Please upload a clear photo of one of the supported Indian foods.'
+            })
 
         predicted_class = CLASS_NAMES[top_idx]
         predicted_food = predicted_class.replace('_', ' ').title()
