@@ -305,31 +305,56 @@ def calculate_macros_with_model(calories, weight, height, age, gender, activity,
     return calculate_macros_traditional(calories, weight, goal, position)
 
 def calculate_macros_traditional(calories, weight, goal, position):
-    position_factors = {
-        'goalkeeper': {'protein': 1.15, 'carbs': 0.9, 'fat': 1.0},
-        'defender': {'protein': 1.2, 'carbs': 1.0, 'fat': 1.0},
-        'midfielder': {'protein': 1.0, 'carbs': 1.25, 'fat': 0.9},
-        'forward': {'protein': 1.1, 'carbs': 1.2, 'fat': 0.9},
-        'athlete': {'protein': 1.15, 'carbs': 1.15, 'fat': 0.95},
-        'sedentary': {'protein': 0.9, 'carbs': 0.8, 'fat': 0.9}
+    """Calculate macros using ISSN-based sports nutrition science"""
+    # Base protein recommendations (g/kg) by goal - ISSN guidelines
+    protein_ratios = {
+        'muscle_gain': 1.8,  # 1.6-2.0 g/kg for muscle building
+        'weight_loss': 1.6,  # 1.6-2.2 g/kg during calorie deficit (preserve muscle)
+        'maintenance': 1.4   # 1.2-1.6 g/kg for health
     }
-    factor = position_factors.get(position, position_factors['midfielder'])
-    if goal == 'muscle_gain':
-        base_protein = weight * 2.2
-        base_fat = weight * 1.0
-    elif goal == 'weight_loss':
-        base_protein = weight * 2.0
-        base_fat = weight * 0.8
-    else:
-        base_protein = weight * 1.8
-        base_fat = weight * 0.9
-    protein = base_protein * factor['protein']
-    fat = base_fat * factor['fat']
-    carbs = (calories - (protein * 4) - (fat * 9)) / 4 * factor['carbs']
+    # Position-specific adjustments to protein
+    position_adjustments = {
+        'goalkeeper': 1.1,
+        'defender': 1.15,
+        'midfielder': 1.0,
+        'forward': 1.05,
+        'athlete': 1.15,
+        'sedentary': 0.9
+    }
+    base_protein_ratio = protein_ratios.get(goal, protein_ratios['maintenance'])
+    position_multiplier = position_adjustments.get(position, 1.0)
+    protein_grams = weight * base_protein_ratio * position_multiplier
+    
+    # Fat: 0.8-1.2 g/kg based on goal
+    fat_ratios = {'muscle_gain': 1.0, 'weight_loss': 0.8, 'maintenance': 0.9}
+    fat_grams = weight * fat_ratios.get(goal, 0.9)
+    
+    # Carbs: fill remaining calories optimized by position
+    protein_calories = protein_grams * 4
+    fat_calories = fat_grams * 9
+    carbs_calories = calories - protein_calories - fat_calories
+    carbs_grams = max(carbs_calories / 4, 0)
+    
+    # Position-specific carb adjustments for energy systems
+    carb_factors = {
+        'midfielder': 1.2,  # Higher carbs for endurance
+        'forward': 1.15,    # High carbs for bursts
+        'goalkeeper': 0.95, # Moderate carbs
+        'defender': 1.0,    # Balanced
+        'athlete': 1.2,
+        'sedentary': 0.8
+    }
+    carbs_grams *= carb_factors.get(position, 1.0)
+    
+    # Recalculate to ensure calorie match
+    total_cals = (protein_grams * 4) + (fat_grams * 9) + (carbs_grams * 4)
+    if abs(total_cals - calories) > 20:
+        carbs_grams = (calories - (protein_grams * 4) - (fat_grams * 9)) / 4
+    
     return {
-        'protein': round(max(protein, 0)),
-        'carbs': round(max(carbs, 0)),
-        'fat': round(max(fat, 0))
+        'protein': round(max(protein_grams, 10)),
+        'carbs': round(max(carbs_grams, 15)),
+        'fat': round(max(fat_grams, 10))
     }
 
 # ============================================
