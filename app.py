@@ -20,11 +20,11 @@ warnings.filterwarnings('ignore')
 try:
     from tensorflow.keras.layers import Dense as KerasDense
     _keras_dense_from_config = KerasDense.from_config
-    def _patched_dense_from_config(cls, config, custom_objects=None):
+    def _patched_dense_from_config(cls, config, *args, **kwargs):
         if isinstance(config, dict):
             config = dict(config)
             config.pop('quantization_config', None)
-        return _keras_dense_from_config(config, custom_objects=custom_objects)
+        return _keras_dense_from_config(config)
     KerasDense.from_config = classmethod(_patched_dense_from_config)
 except Exception:
     pass
