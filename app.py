@@ -16,6 +16,19 @@ import traceback
 
 warnings.filterwarnings('ignore')
 
+# Patch Keras Dense deserialization to ignore legacy H5 quantization_config
+try:
+    from tensorflow.keras.layers import Dense as KerasDense
+    _keras_dense_from_config = KerasDense.from_config
+    def _patched_dense_from_config(cls, config, custom_objects=None):
+        if isinstance(config, dict):
+            config = dict(config)
+            config.pop('quantization_config', None)
+        return _keras_dense_from_config(config, custom_objects=custom_objects)
+    KerasDense.from_config = classmethod(_patched_dense_from_config)
+except Exception:
+    pass
+
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 app.config['SECRET_KEY'] = 'final-health-app-secret-2024'
