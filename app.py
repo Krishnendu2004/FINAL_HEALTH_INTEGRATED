@@ -252,6 +252,27 @@ def calculate_target_calories(tdee, goal):
         return tdee + 300
     return tdee
 
+
+def is_valid_macro_prediction(macros, calories, weight):
+    protein = macros.get('protein', 0)
+    carbs = macros.get('carbs', 0)
+    fat = macros.get('fat', 0)
+    if protein < 0 or carbs < 0 or fat < 0:
+        return False
+
+    total_energy = (protein * 4) + (carbs * 4) + (fat * 9)
+    if total_energy < calories * 0.55 or total_energy > calories * 1.4:
+        return False
+
+    if protein > weight * 4.5 or carbs > weight * 12 or fat > weight * 2.5:
+        return False
+
+    if protein > calories or carbs > calories or fat * 9 > calories:
+        return False
+
+    return True
+
+
 def activity_to_numeric(activity):
     return {'sedentary': 0, 'light': 1, 'moderate': 2, 'active': 3, 'very_active': 4}.get(activity, 2)
 
@@ -271,11 +292,14 @@ def calculate_macros_with_model(calories, weight, height, age, gender, activity,
                                    position_to_numeric(position)]])
             predictions = MACRO_MODEL.predict(features, verbose=0)[0]
             if len(predictions) >= 3:
-                return {
+                macros = {
                     'protein': round(float(predictions[0])),
                     'carbs': round(float(predictions[1])),
                     'fat': round(float(predictions[2]))
                 }
+                if is_valid_macro_prediction(macros, calories, weight):
+                    return macros
+                print(f"⚠️ Macro model output invalid, falling back to traditional macros: {macros}")
         except Exception as e:
             print(f"⚠️ Error using macro model: {e}")
     return calculate_macros_traditional(calories, weight, goal, position)
@@ -482,6 +506,13 @@ def calculate_nutrition():
             'carbs': sum(m['carbs'] for m in meal_plan),
             'fat': sum(m['fat'] for m in meal_plan)
         }
+        # Use the generated meal plan totals as the authoritative nutrition targets
+        macros = {
+            'protein': totals['protein'],
+            'carbs': totals['carbs'],
+            'fat': totals['fat']
+        }
+        target_calories = totals['calories']
         bmi_data = calculate_bmi(height, weight)
         ideal_weight = calculate_ideal_weight(height, gender)
         water_intake = calculate_water_intake(weight, activity)

@@ -120,9 +120,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Listen for numeric input changes (age, weight, height, activity) and auto-calculate
+    const numericInputs = ['age', 'weight', 'height', 'activity'];
+    numericInputs.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener('change', function() {
+                console.log(`Input changed: ${id} = ${this.value}`);
+                calculateNutrition();
+            });
+        }
+    });
+    
     // Update profile display initially
     updateProfileDisplay();
 });
+
 
 // Update profile display badges
 function updateProfileDisplay() {
